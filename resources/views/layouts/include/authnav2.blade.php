@@ -18,8 +18,8 @@
                 <a class="nav-link" href="{{route('offices.index')}}">Offices<span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('documents.index')}}">Documents<span class="sr-only">(current)</span></a>
             </li>
 
         </ul>

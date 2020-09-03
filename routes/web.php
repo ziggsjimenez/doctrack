@@ -50,4 +50,8 @@ Route::post('requirements/list','RequirementsController@loadrequirements')->name
 Route::post('requirements/add','RequirementsController@addrequirement')->name('requirements.addrequirement');
 Route::post('requirements/edit','RequirementsController@editrequirement')->name('requirements.editrequirement');
 
+//doc requirement
+Route::post('docrequirement/complied','DocrequirementController@complied')->name('docrequirement.complied');
+Route::post('docrequirement/notcomplied','DocrequirementController@notcomplied')->name('docrequirement.notcomplied');
+
 

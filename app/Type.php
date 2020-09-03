@@ -10,4 +10,9 @@ class Type extends Model
 
         return $this->hasMany('App\Requirement');
     }
+
+    public function documents(){
+
+        return $this->hasMany('App\Type');
+    }
 }
