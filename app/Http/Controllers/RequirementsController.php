@@ -23,6 +23,20 @@ class RequirementsController extends Controller
 
     }
 
+    public function editrequirement(){
+
+        $name = $_POST['reqname'];
+        $requirement_id = $_POST['requirement_id'];
+
+        $requirement = Requirement::find($requirement_id);
+
+        $requirement->name = $name;
+        $requirement->save();
+
+        return response()->json(['message'=>'Requirements updated!']);
+
+    }
+
     public function loadrequirements(){
 
         $id = $_POST['type_id'];

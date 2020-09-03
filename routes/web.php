@@ -40,11 +40,14 @@ Route::view('/admin', 'admin');
 //types
 
 Route::resource('types','TypeController');
+Route::resource('offices','OfficeController');
+Route::resource('documents','DocumentController');
 
 
 //requirements
 
 Route::post('requirements/list','RequirementsController@loadrequirements')->name('requirements.list');
 Route::post('requirements/add','RequirementsController@addrequirement')->name('requirements.addrequirement');
+Route::post('requirements/edit','RequirementsController@editrequirement')->name('requirements.editrequirement');
 
 

@@ -25,8 +25,11 @@
     $('.btnupdate').click(function () {
 
         $('#reqaddbtn').html("Edit");
+        $('#reqaddbtn').attr({
+            "method":"Edit"
+        });
         $('#reqname').val($(this).attr('requirementname'));
-        $('#type_id').val($(this).attr('requirementid'));
+        $('#requirement_id').val($(this).attr('requirementid'));
 
     });
 </script>

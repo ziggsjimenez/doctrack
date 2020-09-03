@@ -17,8 +17,9 @@
         <div class="form-group">
             <input class="form-control" type="text" id="reqname" placeholder="Requirement name...">
             <input type="hidden" id="type_id" value="{{$type->id}}"/>
+            <input type="hidden" id="requirement_id" value=""/>
         </div>
-        <button class="btn btn-primary" id="reqaddbtn">ADD</button>
+        <button class="btn btn-primary" id="reqaddbtn" method="Add">ADD</button>
 
         <div id="requirementstable">
 
@@ -65,34 +66,69 @@
 
             $('#reqaddbtn').click(function () {
 
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-                var type_id = $('#type_id').val();
-                var reqname = $('#reqname').val();
+                if ($('#reqaddbtn').attr('method') == "Edit") {
 
-                if (reqname == "") {
-                    alert('Blank field!')
-                } else {
-                    $.ajax({
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-                        url: '{{route('requirements.addrequirement')}}',
-                        type: 'POST',
+                    var type_id = $('#type_id').val();
+                    var reqname = $('#reqname').val();
+                    var requirement_id = $('#requirement_id').val();
 
-                        data: {_token: CSRF_TOKEN, type_id: type_id, reqname: reqname},
-                        dataType: 'JSON',
+                    if (reqname == "") {
+                        alert('Blank field!')
+                    } else {
+                        $.ajax({
 
-                        success: function (data) {
+                            url: '{{route('requirements.editrequirement')}}',
+                            type: 'POST',
 
-                            $('#reqname').val("");
-                            loadrequirements();
+                            data: {_token: CSRF_TOKEN, type_id: type_id, reqname: reqname,requirement_id:requirement_id},
+                            dataType: 'JSON',
 
-                        }
-                    });
+                            success: function (data) {
+
+                                $('#reqname').val("");
+                                $('#reqaddbtn').html("Add");
+                                $('#reqaddbtn').attr({
+                                    "method":"Add"
+                                });
+
+                                $('#requirement_id').val("");
+                                loadrequirements();
+
+                            }
+                        });
+                    }
+                }
+                if ($('#reqaddbtn').attr('method') == "Add") {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    var type_id = $('#type_id').val();
+                    var reqname = $('#reqname').val();
+
+                    if (reqname == "") {
+                        alert('Blank field!')
+                    } else {
+                        $.ajax({
+
+                            url: '{{route('requirements.addrequirement')}}',
+                            type: 'POST',
+
+                            data: {_token: CSRF_TOKEN, type_id: type_id, reqname: reqname},
+                            dataType: 'JSON',
+
+                            success: function (data) {
+
+                                $('#reqname').val("");
+                                loadrequirements();
+
+                            }
+                        });
+                    }
                 }
 
             });
-
-
 
         });
 
